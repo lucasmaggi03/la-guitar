@@ -1,8 +1,21 @@
 
-export default function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart}) {
+type CartItem = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+};
 
-  const cartTotal = () => cart.reduce( (total, item) => total + (item.price * item.quantity), 0);
+type HeaderProps = {
+  cart: CartItem[];
+  removeFromCart: (id: number) => void;
+  increaseQuantity: (id: number) => void;
+  decreaseQuantity: (id: number) => void;
+  clearCart: () => void;
+};
 
+export default function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, cartTotal}: HeaderProps) {
 
   return (
     <header className="py-5 header">
