@@ -1,23 +1,15 @@
 import { useEffect, useState } from "react";
 import { db } from "../data/db";
-
-type GuitarType = {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  price: number;
-  quantity?: number;
-};
+import type { CartItem } from "../types/index";
 
 export const useCart = () => {
-  const initialCart = (): GuitarType[] => {
+  const initialCart = (): CartItem[] => {
     const localStorageCart = localStorage.getItem("cart");
     return localStorageCart ? JSON.parse(localStorageCart) : [];
   };
 
-  const [data, setData] = useState<GuitarType[]>(db);
-  const [cart, setCart] = useState<GuitarType[]>(initialCart);
+  const [data] = useState<CartItem[]>(db);
+  const [cart, setCart] = useState<CartItem[]>(initialCart);
 
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 1;
@@ -26,7 +18,7 @@ export const useCart = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  function addToCart(item: GuitarType) {
+  function addToCart(item: CartItem) {
     const itemExist = cart.findIndex((guitar) => guitar.id === item.id);
 
     if (itemExist !== -1) {

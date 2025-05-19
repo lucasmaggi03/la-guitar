@@ -1,22 +1,12 @@
+import type { Guitar } from '../types/index';
+
 type GuitarProps = {
-  guitar: {
-    id: number;
-    name: string;
-    image: string;
-    description: string;
-    price: number;
-  };
-  addToCart: (guitar: {
-    id: number;
-    name: string;
-    image: string;
-    description: string;
-    price: number;
-  }) => void;
+  guitar: Guitar,
+  addToCart: (guitar: Guitar) => void;
 };
 
 export default function Guitar({ guitar, addToCart }: GuitarProps) {
-  const { id, name, image, description, price } = guitar;
+  const { name, image, description, price } = guitar;
   return (
     <div className="col-md-6 col-lg-4 my-4 row align-items-center">
       <div className="col-4">

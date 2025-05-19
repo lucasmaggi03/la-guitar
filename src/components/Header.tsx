@@ -1,18 +1,12 @@
-
-type CartItem = {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-};
+import type { CartItem, Guitar } from '../types/index';
 
 type HeaderProps = {
   cart: CartItem[];
-  removeFromCart: (id: number) => void;
-  increaseQuantity: (id: number) => void;
-  decreaseQuantity: (id: number) => void;
+  removeFromCart: (id: Guitar['id']) => void;
+  increaseQuantity: (id: Guitar['id']) => void;
+  decreaseQuantity: (id: Guitar['id']) => void;
   clearCart: () => void;
+  cartTotal: () => number;
 };
 
 export default function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, cartTotal}: HeaderProps) {
